@@ -207,10 +207,10 @@ See [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Project team
 
-- **Nishant Jain, PhD,MS,MHA,FAMIA** - project concept, cancer-registry use case, source-to-FHIR mapping, initial prototype, CDC Registry Plus CORE coordination
-- **Anirudh Kambhampati, MS** - student development, implementation/refinement, testing, validation, documentation
-- **Mohammad Beheshti,MSHI** - technical consultation, architecture, feasibility, transformation methodology
-- **Iris Zachary, PhD,FAMIA,ODS-C** - scientific and cancer-registry oversight
+- **Nishant Jain, PhD,MS,MHA,FAMIA** - project concept, cancer-registry use case, source-to-FHIR mapping, initial prototype, CDC Registry Plus CORE coordination (jainn@umsystem.edu) 
+- **Anirudh Kambhampati, MS** - student development, implementation/refinement, testing, validation, documentation (akwg7@umsystem.edu)
+- **Mohammad Beheshti,MSHI** - technical consultation, architecture, feasibility, transformation methodology (mbwnh@umsystem.edu)
+- **Iris Zachary, PhD,FAMIA,ODS-C** - scientific and cancer-registry oversight (zacharyi@umsystem.edu) 
 
 
 ## Acknowledgements
@@ -228,6 +228,5 @@ FHIRBridge-MO is informed by:
 Citation metadata are provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
+This MVP prototype was created for the AMIA FHIA app competition 2026. Please contact the project team at https://cancerregistry.missouri.edu/ before reusing or redistributing the software.
 
-**License not yet selected.**  
-Before making the repository public, confirm the appropriate open-source license and institutional approval requirements.
