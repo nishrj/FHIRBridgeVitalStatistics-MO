@@ -207,10 +207,10 @@ See [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Project team
 
-- **Nishant Jain, PhD** - project concept, cancer-registry use case, source-to-FHIR mapping, initial prototype, CDC Registry Plus CORE coordination
-- **Anirudh Kambhampati** - student development, implementation/refinement, testing, validation, documentation
-- **Mohammad Beheshti** - technical consultation, architecture, feasibility, transformation methodology
-- **Iris Zachary, PhD** - scientific and cancer-registry oversight
+- **Nishant Jain, PhD,MS,MHA,FAMIA** - project concept, cancer-registry use case, source-to-FHIR mapping, initial prototype, CDC Registry Plus CORE coordination
+- **Anirudh Kambhampati, MS** - student development, implementation/refinement, testing, validation, documentation
+- **Mohammad Beheshti,MSHI** - technical consultation, architecture, feasibility, transformation methodology
+- **Iris Zachary, PhD,FAMIA,ODS-C** - scientific and cancer-registry oversight
 
 
 ## Acknowledgements
