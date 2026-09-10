@@ -1,7 +1,6 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyo
 .venv/
 venv/
 env/
@@ -13,32 +12,31 @@ env/
 .DS_Store
 Thumbs.db
 
-# Secrets / environment
+# Secrets
 .env
 .env.*
 *.pem
 *.key
-secrets.*
 credentials.*
+secrets.*
 
-# Local / protected data
+# Protected / local data
 data/
 private/
 restricted/
 real_data/
 production_data/
 *.bak
-*.bak.*
 *.mdf
 *.ldf
 
-# Generated local outputs
-output/
-outputs/
+# Logs / working output
 logs/
 *.log
+output/
+outputs/
 
-# Office temp files
+# Office temporary files
 ~$*.xlsx
 ~$*.docx
 ~$*.pptx

@@ -1,44 +1,40 @@
 # FHIRBridge-MO
 
-**Legacy Missouri-style death-certificate data → VRDR/FHIR R4 → cancer-registry interoperability testing**
+**Legacy Missouri-style mortality data → VRDR/FHIR R4 → cancer-registry interoperability testing**
 
-FHIRBridge-MO is a proof-of-concept public-health informatics project that explores how a legacy fixed-width mortality file can be transformed into standards-oriented **HL7 FHIR R4 / Vital Records Death Reporting (VRDR)** resources for cancer-registry death-clearance workflows.
+FHIRBridge-MO is a synthetic-data public-health informatics MVP that explores whether a registry receiving a legacy fixed-width mortality file can translate selected fields into a standardized VRDR/FHIR structure for downstream cancer-registry death-clearance workflows.
 
-The current repository contains a **synthetic-data MVP** only. It is intended for development, learning, interoperability testing, and research—not production clinical or registry use.
+The current project uses Python to parse a reduced Missouri-style fixed-width file, normalize selected fields, build VRDR/FHIR resources, assemble linked JSON Bundles, and create output for CDC Registry Plus CORE testing.
 
-> **Status:** Developer-reference prototype. Synthetic data only. Successful CORE import of the FHIRBridge-MO-generated bundle are being evaluated.
+> **Current status:** A Missouri synthetic, template-aligned FHIR bundle using the two-record test data has been accepted by the CORE Death Reports FHIR import pathway. The latest standalone Python generator reproduces that accepted structural pattern without requiring a separate template JSON file. Repeatable testing of newly generated output and VRDR validation remain part of the MVP evaluation.
 
 ## Why this project exists
 
-Cancer registries use mortality data to:
+Cancer registries use mortality data to identify deaths, update vital status, link death reports to registry patients, investigate unmatched cancer-related deaths, and support death-certificate-only (DCO) follow-back.
 
-- identify deaths and update vital status;
-- link death certificates to existing registry records;
-- investigate unmatched cancer-related deaths; and
-- support death-certificate-only (DCO) follow-back.
-
-Missouri's mortality workflow uses a fixed-width file in which meaning depends on known character positions. FHIRBridge-MO separates the legacy file parser from the FHIR builders so that a local source format can be translated into explicit, standardized resources.
+Missouri's source mortality feed is a fixed-width file: the meaning of each value depends on its character position. FHIRBridge-MO provides a translation layer rather than requiring the source system to be replaced.
 
 ```mermaid
 flowchart LR
-    A[Missouri-style fixed-width SDF] --> B[Parser]
+    A[Legacy fixed-width mortality file] --> B[Python parser]
     B --> C[Normalized record]
-    C --> D[VRDR/FHIR resource builders]
-    D --> E[FHIR JSON Bundle]
+    C --> D[VRDR/FHIR builders]
+    D --> E[FHIR JSON batch/message/document Bundles]
     E --> F[CORE Death Reports testing]
     E --> G[CQL prototype]
-    E --> H[Bulk Data-aligned NDJSON]
+    E --> H[Bulk-oriented NDJSON]
 ```
 
 ## Current MVP
 
-The prototype demonstrates:
+The repository demonstrates:
 
-- parsing of 245- and 249-character synthetic fixed-width records;
-- normalization of selected dates and source fields;
-- mapping of selected mortality fields into VRDR/FHIR concepts;
-- generation of UUID-linked FHIR resources and Bundles;
-- a CORE-template-aligned synthetic JSON example;
+- parsing of the current 245-character synthetic layout and an intended reduced 249-character layout;
+- normalization of selected date and source values;
+- mapping of selected mortality fields to FHIR/VRDR concepts;
+- UUID-linked FHIR resource generation;
+- a 24-resource CORE-aligned synthetic death-certificate document structure;
+- generation of a new FHIR bundle **without an external template JSON dependency**;
 - a prototype CQL rule for first-pass cancer-coded-death flagging; and
 - resource-type NDJSON output for bulk-oriented testing.
 
@@ -53,34 +49,43 @@ The prototype demonstrates:
 | `por_name`, address, city, state, ZIP | Death institution / location | `Location / vrdr-death-location` |
 | `cause` | Underlying ICD-10 cause of death | `Observation / vrdr-automated-underlying-cause-of-death` |
 
-See [`mapping/SyntheticDCOtoFHIRmapping.csv`](mapping/SyntheticDCOtoFHIRmapping.csv) for the field-level mapping.
+See [`mapping/SyntheticDCOtoFHIRmapping.csv`](mapping/SyntheticDCOtoFHIRmapping.csv) and [`docs/data-mapping.md`](docs/data-mapping.md).
 
 ## FHIR technologies
 
 - **FHIR R4**
-- **HL7 VRDR**
+- **HL7 Vital Records Death Reporting (VRDR) v3.0.0**
 - FHIR JSON Bundles
 - CQL prototype packaged as a FHIR `Library`
 - Bulk Data-aligned NDJSON prototype
 
+SMART on FHIR and CDS Hooks are not required by the current batch-oriented public-health workflow.
+
+See [`docs/fhir-resources.md`](docs/fhir-resources.md).
+
 ## Repository layout
 
 ```text
-FHIRBridge-MO/
+FHIRBridgeVitalStatistics-MO/
 ├── README.md
-├── requirements.txt
-├── .gitignore
+├── CHANGELOG.md
 ├── CITATION.cff
 ├── CONTRIBUTING.md
-├── SECURITY.md
 ├── DISCLAIMER.md
-├── CHANGELOG.md
+├── LICENSE_STATUS.md
+├── SECURITY.md
+├── requirements.txt
+├── .gitignore
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   └── PULL_REQUEST_TEMPLATE.md
 ├── src/
-│   ├── create_mo_fhir_from_sdf_jupyter_CDC_RegistryPlus_CORE.py
+│   ├── create_mo_fhir_core_standalone.py
 │   └── export_bulk_fhir_ndjson_jupyter.py
 ├── examples/
 │   ├── MCR_DEATH_2024_SYNTHETIC.txt
 │   ├── MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_TEMPLATE_ALIGNED.json
+│   ├── MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_STANDALONE_TEST.json
 │   └── bulk_ndjson/
 ├── mapping/
 │   ├── SyntheticDCOtoFHIRmapping.xlsx
@@ -90,9 +95,13 @@ FHIRBridge-MO/
 │   └── FHIRBridge_MO_CQL_Library.json
 ├── docs/
 │   ├── architecture.md
+│   ├── core-import-workflow.md
 │   ├── data-mapping.md
+│   ├── data-validation.md
+│   ├── fhir-resources.md
+│   ├── roadmap.md
 │   ├── testing.md
-│   └── roadmap.md
+│   └── ui-mockup.md
 └── reference/
     └── README.md
 ```
@@ -103,131 +112,123 @@ FHIRBridge-MO/
 
 - Python 3.10+ recommended
 - Anaconda/Jupyter optional
-- No third-party Python packages are required by the core converter
+- The core converter uses only the Python standard library
 
-### 2. Prepare the synthetic input
+### 2. Run the standalone converter
 
-The example input is:
-
-```text
-examples/MCR_DEATH_2024_SYNTHETIC.txt
-```
-
-It contains **synthetic records only**.
-
-### 3. Run the developer-reference converter
-
-The current converter uses a configurable `BASE_FOLDER` near the beginning of the script.
-
-For Jupyter:
+From a cloned repository:
 
 ```python
-%run src/create_mo_fhir_from_sdf_jupyter_CDC_RegistryPlus_CORE.py
+%run src/create_mo_fhir_core_standalone.py
 ```
 
-Before running, update `BASE_FOLDER`, `INPUT_FILE`, and `OUTPUT_FILE` for your local environment.
-
-> The current converter script is a developer-reference implementation and does **not** by itself prove CORE compatibility or VRDR conformance.
-
-### 4. Review the CORE-template-aligned example
-
-The repository also contains:
+The script automatically finds the synthetic input under `examples/` and creates:
 
 ```text
-examples/MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_TEMPLATE_ALIGNED.json
+examples/MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_GENERATED.json
 ```
 
-This file was prepared to closely follow the structure of a known CDC Registry Plus CORE FHIR sample while retaining Missouri synthetic values. It is useful for parser/import troubleshooting.
+If you copy the script and input file into a separate Windows working folder such as `S:\FHIR\working folder2`, it can run there too:
 
-**Important:** structural alignment with a reference file is not equivalent to standards validation.
+```python
+%run "S:\FHIR\working folder2\create_mo_fhir_core_standalone.py"
+```
 
-## CORE testing status
+No separate `FHIRBridge_MO_CORE_ACCEPTED_TEMPLATE.json` file is required.
 
-A reference FHIR bundle was successfully imported into the CORE **Death Reports preprocessing** area with two records and no parsing failures. That establishes a baseline for the CORE import pathway.
+### 3. Test artifacts
 
-The Missouri-generated/template-aligned example remains a test artifact until its own import behavior and VRDR validation are documented.
+- [`examples/MCR_DEATH_2024_SYNTHETIC.txt`](examples/MCR_DEATH_2024_SYNTHETIC.txt) — two synthetic fixed-width records
+- [`examples/MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_TEMPLATE_ALIGNED.json`](examples/MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_TEMPLATE_ALIGNED.json) — Missouri synthetic bundle shaped to the CORE reference structure and used in successful parser/import testing
+- [`examples/MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_STANDALONE_TEST.json`](examples/MCR_DEATH_2024_SYNTHETIC_MO_FHIR_CORE_STANDALONE_TEST.json) — example produced by the standalone generator
 
-See [`docs/testing.md`](docs/testing.md).
+## CORE testing
+
+During technical testing, the CORE Death Reports FHIR import pathway was confirmed to stage imported records in the Death Reports preprocessing area. Downstream patient matching, death-information updates, DCO release, and disposal/rejection are separate workflow actions.
+
+A Missouri synthetic template-aligned bundle was accepted by the FHIR import pathway. **CORE parser acceptance and VRDR standards conformance are treated as separate questions.**
+
+See [`docs/testing.md`](docs/testing.md) and [`docs/core-import-workflow.md`](docs/core-import-workflow.md).
 
 ## CQL prototype
 
-[`cql/FHIRBridge_MO_Cancer_FollowBack_Prototype.cql`](cql/FHIRBridge_MO_Cancer_FollowBack_Prototype.cql) demonstrates a simple first-pass rule:
+[`cql/FHIRBridge_MO_Cancer_FollowBack_Prototype.cql`](cql/FHIRBridge_MO_Cancer_FollowBack_Prototype.cql) demonstrates a simple first-pass rule over the standardized underlying-cause Observation: flag a potential cancer-coded death when the ICD-10 code begins with `C`.
 
-> flag a potential cancer-coded death when the standardized underlying-cause Observation contains an ICD-10 code beginning with `C`.
-
-This is **not** the Missouri Cancer Registry's production DCO selection algorithm.
+This is demonstration logic only. It is **not** the Missouri Cancer Registry's production DCO selection algorithm.
 
 ## Bulk-oriented NDJSON
 
-The optional exporter writes one FHIR resource per line, grouped by resource type, for example:
+[`src/export_bulk_fhir_ndjson_jupyter.py`](src/export_bulk_fhir_ndjson_jupyter.py) writes one resource per line, grouped by resource type.
 
-- `Patient.ndjson`
-- `Observation.ndjson`
-- `Location.ndjson`
+Example outputs are under [`examples/bulk_ndjson/`](examples/bulk_ndjson/).
 
-This is **Bulk Data-aligned NDJSON**, not a complete implementation of the server-side FHIR Bulk Data `$export` protocol.
+This demonstrates **Bulk Data-aligned NDJSON representation**; it is not a complete implementation of the server-side FHIR Bulk Data `$export` protocol.
+
+## Planned interface
+
+A Figma Make mockup has been created for a possible future configurable interface with source-file setup, layout definition, field-to-FHIR mapping, validation/preview, and export steps.
+
+The Figma screen is a **future UI concept**, not the current working application. The current MVP runs in Python/Jupyter.
+
+See [`docs/ui-mockup.md`](docs/ui-mockup.md).
+
+## Data validation
+
+The prototype checks supported fixed-width record lengths, parses/normalizes dates, verifies required identifiers and death dates, preserves FHIR resource roles, and checks the internal UUID reference graph before writing output.
+
+See [`docs/data-validation.md`](docs/data-validation.md).
 
 ## Data safety
 
-This public repository should contain **synthetic data only**.
+**Synthetic data only should be committed to this repository.**
 
-Do not commit:
-
-- real death-certificate files;
-- Social Security numbers or other direct identifiers;
-- real patient names, addresses, or dates;
-- database backups;
-- connection strings, passwords, API keys, or secrets;
-- internal server names or restricted configuration files.
+Do not commit real death-certificate files, SSNs, patient names/addresses/dates, production database exports, credentials, API keys, or restricted internal configuration.
 
 See [`SECURITY.md`](SECURITY.md).
 
 ## Known limitations
 
 - The project uses a reduced synthetic mortality layout.
-- Not all source fields needed for a complete VRDR death certificate are present.
-- Some resources/values in the CORE-template-aligned sample are explicitly synthetic scaffolding used to preserve reference structure.
-- `state_auxiliary_id` is not available in the reduced Missouri source; any value used in a synthetic troubleshooting artifact must not be interpreted as operational data.
-- The developer-reference Python converter and the template-aligned example represent different stages of the prototype and should not be assumed to be byte-for-byte equivalent outputs.
-- Successful parsing by CORE does not prove VRDR conformance.
+- The 245-character example and intended 249-character layout are not identical.
+- The reduced source does not contain every data element found in a complete VRDR death certificate.
+- Some values/resources in the accepted structural pattern are explicitly synthetic scaffolding.
+- `state_auxiliary_id` is not present in the reduced source and is represented by a synthetic deterministic placeholder in the prototype.
+- Successful CORE parsing/import does not establish complete VRDR conformance.
+- The standalone generator's repeatable output should continue to be tested in a non-production CORE environment.
 - The CQL rule is demonstration logic only.
 - The NDJSON exporter is not a full Bulk Data `$export` implementation.
 
 ## Roadmap
 
-1. Validate generated resources against applicable VRDR profiles.
-2. Test FHIRBridge-MO-generated output in non-production CORE.
-3. Document parser/import errors and required structural changes.
-4. Refine the converter so its generated output incorporates validated CORE/VRDR requirements.
-5. Execute/refine the CQL prototype.
+1. Repeat CORE test imports from standalone-generated output.
+2. Validate applicable resources against VRDR profiles.
+3. Compare source fields to generated output for field-level fidelity.
+4. Refine synthetic scaffolding as more source fields are mapped.
+5. Execute and refine the CQL prototype.
 6. Scale-test NDJSON with larger synthetic volumes.
-7. Prototype a configurable interface for registry-specific layouts and mappings.
+7. Prototype a configurable/low-code mapping interface for reuse by other registries.
 
 See [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Project team
 
-- **Nishant Jain, PhD,MS,MHA,FAMIA** - project concept, cancer-registry use case, source-to-FHIR mapping, initial prototype, CDC Registry Plus CORE coordination (jainn@umsystem.edu) 
-- **Anirudh Kambhampati, MS** - student development, implementation/refinement, testing, validation, documentation (akwg7@umsystem.edu)
-- **Mohammad Beheshti,MSHI** - technical consultation, architecture, feasibility, transformation methodology (mbwnh@umsystem.edu)
-- **Iris Zachary, PhD,FAMIA,ODS-C** - scientific and cancer-registry oversight (zacharyi@umsystem.edu) 
-
+- **Nishant Jain, PhD, MS, MHA, FAMIA** — project concept, cancer-registry use case, source-to-FHIR mapping, initial prototype, and Registry Plus CORE coordination
+- **Anirudh Kambhampati, MS** — student development, implementation/refinement, testing, validation, and documentation
+- **Mohammad Beheshti, MSHI** — technical consultation, architecture, feasibility, and transformation methodology
+- **Iris Zachary, PhD, FAMIA, ODS-C** — scientific and cancer-registry oversight
 
 ## Acknowledgements
 
-FHIRBridge-MO is informed by:
+FHIRBridge-MO is informed by HL7 FHIR R4, the HL7 VRDR Implementation Guide, and CDC Registry Plus CORE Death Reports functionality/reference materials.
 
-- HL7 FHIR R4
-- HL7 Vital Records Death Reporting (VRDR)
-- CDC Registry Plus CORE Death Reports functionality and reference materials
-
-
+No endorsement by HL7, CDC, AMIA, the University of Missouri, or any other organization is implied.
 
 ## Citation
 
 Citation metadata are provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
-This MVP prototype was created for the AMIA FHIR app competition 2026. Please contact the project team before reusing or redistributing the software. 
-https://cancerregistry.missouri.edu/
 
+Copyright and licensing status are under review in accordance with applicable University of Missouri intellectual-property requirements. **No open-source license has been granted at this time.**
+
+See [`LICENSE_STATUS.md`](LICENSE_STATUS.md) before reusing or redistributing the software.

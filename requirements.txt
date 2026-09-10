@@ -1,6 +1,2 @@
 # Core converter and NDJSON exporter use only the Python standard library.
-# Recommended Python version:
-# python>=3.10
-#
-# Optional development environment:
-# jupyter
+# Recommended Python version: 3.10+

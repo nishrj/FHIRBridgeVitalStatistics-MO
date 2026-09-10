@@ -1,26 +1,12 @@
 # Security and Data Governance
 
-FHIRBridge-MO is designed for synthetic-data development and interoperability testing.
+FHIRBridge-MO is a synthetic-data development and interoperability-testing project.
 
-## Never commit protected or operational data
+Do not upload real mortality/death-certificate files, SSNs, other direct
+identifiers, PHI/PII, production database exports/backups, passwords, API keys,
+tokens, private keys, connection strings, or restricted infrastructure details.
 
-Do not upload to a public repository:
+Use synthetic data and a non-production CORE environment whenever possible.
 
-- real death-certificate or mortality files;
-- Social Security numbers;
-- names, addresses, dates, or identifiers from real people;
-- protected health information (PHI);
-- personally identifiable information (PII);
-- production database exports or backups;
-- credentials, passwords, tokens, private keys, or connection strings;
-- internal-only server names or restricted infrastructure details.
-
-## Testing
-
-Use synthetic test data and, where possible, a non-production CORE environment.
-
-A FHIR file successfully importing into a preprocessing table does not establish clinical correctness, production safety, or standards conformance.
-
-## Reporting a security concern
-
-For an institutional deployment, follow the University of Missouri and Missouri Cancer Registry approved security/reporting process rather than posting sensitive details in a public GitHub issue.
+A successful FHIR parser/import test does not by itself establish standards
+conformance, production safety, or correctness of downstream registry actions.

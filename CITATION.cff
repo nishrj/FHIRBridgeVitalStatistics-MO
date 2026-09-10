@@ -1,25 +1,23 @@
 cff-version: 1.2.0
-message: "If you use FHIRBridge-MO, please cite this repository."
+message: "If you reference FHIRBridge-MO, please cite this repository."
 title: "FHIRBridge-MO: Transforming Legacy Death Certificate Data into VRDR/FHIR for Cancer Registry Death Clearance"
 type: software
 authors:
   - family-names: Jain
     given-names: Nishant
-    orcid: ""
   - family-names: Kambhampati
     given-names: Anirudh
   - family-names: Beheshti
     given-names: Mohammad
   - family-names: Zachary
     given-names: Iris
-version: 0.1.0
-date-released: 2026-09-09
-license: "TBD"
-repository-code: "TBD"
+version: 0.2.0
+date-released: 2026-09-10
+repository-code: "https://github.com/nishrj/FHIRBridgeVitalStatistics-MO"
 keywords:
   - FHIR
   - VRDR
   - cancer registry
-  - death clearance
   - mortality
+  - death clearance
   - public health informatics

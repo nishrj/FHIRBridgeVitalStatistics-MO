@@ -1,11 +1,15 @@
 # Disclaimer
 
-FHIRBridge-MO is a research/development proof of concept.
+FHIRBridge-MO is a research/development proof of concept using synthetic data.
 
-It is not a certified production interface, clinical application, registry reporting system, or official implementation of CDC Registry Plus CORE, HL7 FHIR, or the VRDR Implementation Guide.
+It is not a certified production interface, clinical application, official
+registry reporting system, or official implementation of CDC Registry Plus CORE,
+HL7 FHIR, or the VRDR Implementation Guide.
 
-The repository may contain synthetic scaffolding to preserve a reference structure when the reduced source file does not contain an equivalent field. Such values must not be interpreted as real vital-records data.
+Some resources and values are synthetic scaffolding because the reduced source
+file does not contain every field in the structural pattern being tested.
 
-References to CDC Registry Plus CORE, HL7, FHIR, VRDR, AMIA, or other organizations/standards do not imply endorsement.
+CORE parser acceptance and VRDR conformance are separate tests.
 
-Users are responsible for independent validation, security review, data-governance approval, standards conformance testing, and operational testing before any production use.
+References to CDC Registry Plus CORE, HL7, FHIR, VRDR, AMIA, the University of
+Missouri, or other organizations do not imply endorsement.

@@ -1,28 +1,11 @@
 # Contributing
 
-FHIRBridge-MO is currently an early public-health informatics prototype.
+FHIRBridge-MO is an early synthetic-data public-health informatics prototype.
 
-## Before contributing
+Use synthetic data only. Do not commit PHI, PII, real mortality files,
+credentials, or production data. Keep source parsing separate from FHIR
+construction where practical, clearly distinguish source-derived values from
+synthetic scaffolding, and update mapping/testing documentation when behavior
+changes.
 
-1. Use **synthetic data only**.
-2. Do not commit PHI, PII, production mortality files, database extracts, credentials, or internal secrets.
-3. Keep source-layout parsing separate from FHIR resource construction where possible.
-4. Clearly distinguish:
-   - source-derived values;
-   - synthetic scaffolding;
-   - standards-required values; and
-   - experimental/test-only values.
-5. Do not describe successful parsing as proof of VRDR conformance.
-
-## Suggested workflow
-
-- Open an issue describing the proposed change.
-- Create a focused branch.
-- Add or update synthetic test records where relevant.
-- Document mapping changes.
-- Verify internal UUID/reference integrity.
-- Record validation or CORE test results in `docs/testing.md`.
-
-## Coding style
-
-Prefer small, readable functions and explicit comments around FHIR/VRDR assumptions.
+Do not describe CORE parser acceptance as proof of complete VRDR conformance.
