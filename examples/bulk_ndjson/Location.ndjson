@@ -1,0 +1,2 @@
+{"resourceType":"Location","id":"e96269f5-e18e-49c9-9dc4-2cc1dcc6fc63","meta":{"profile":["http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-location"]},"name":"Synthetic Facility 830","address":{"line":["8359 Example Street"],"city":"Demoville","state":"AR","country":"US"}}
+{"resourceType":"Location","id":"5ac0db70-b483-46c5-bf1c-b119d14d452d","meta":{"profile":["http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-location"]},"name":"Synthetic Facility 277","address":{"line":["8884 Example Street"],"city":"Data City","state":"IL","country":"US"}}

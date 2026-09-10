@@ -1,0 +1,2 @@
+{"resourceType":"Parameters","id":"9cb7c605-d6b7-4000-ac5d-15a7ed0e6fd0","parameter":[{"name":"cert_no","valueUnsignedInt":951},{"name":"death_year","valueUnsignedInt":2024},{"name":"jurisdiction_id","valueString":"MO"}]}
+{"resourceType":"Parameters","id":"35085651-6791-4c1d-9485-a1bf9ee5cc32","parameter":[{"name":"cert_no","valueUnsignedInt":608},{"name":"death_year","valueUnsignedInt":2023},{"name":"jurisdiction_id","valueString":"MO"}]}

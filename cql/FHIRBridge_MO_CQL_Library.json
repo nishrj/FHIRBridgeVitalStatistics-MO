@@ -1,0 +1,26 @@
+{
+  "resourceType": "Library",
+  "id": "fhirbridge-mo-followback-prototype",
+  "url": "urn:uuid:fhirbridge-mo-followback-prototype",
+  "version": "0.1.0",
+  "name": "FHIRBridgeMOFollowBack",
+  "title": "FHIRBridge-MO Prototype Death-Clearance Follow-Back Logic",
+  "status": "draft",
+  "experimental": true,
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/library-type",
+        "code": "logic-library",
+        "display": "Logic Library"
+      }
+    ]
+  },
+  "description": "Prototype CQL logic that identifies a potential cancer-coded death when the automated underlying cause-of-death Observation contains an ICD-10 code beginning with C. Not a production reportability rule.",
+  "content": [
+    {
+      "contentType": "text/cql",
+      "data": "LyoKRkhJUkJyaWRnZS1NTyBwcm90b3R5cGUgQ1FMIHJ1bGVzIGxheWVyClB1cnBvc2U6IGRlbW9uc3RyYXRlIGhvdyBzdGFuZGFyZGl6ZWQgRkhJUiByZXNvdXJjZXMgY2FuIHN1cHBvcnQgcmV1c2FibGUKbG9naWMgYWZ0ZXIgbGVnYWN5IG1vcnRhbGl0eSBkYXRhIGhhdmUgYmVlbiB0cmFuc2Zvcm1lZCB0byBWUkRSL0ZISVIuCgpJTVBPUlRBTlQ6Ci0gVGhpcyBpcyBwcm90b3R5cGUgbG9naWMgZm9yIGRlbW9uc3RyYXRpb24vZXZhbHVhdGlvbiwgbm90IGEgcHJvZHVjdGlvbgogIGNhbmNlci1yZXBvcnRhYmlsaXR5IG9yIGRlYXRoLWNsZWFyYW5jZSBydWxlLgotIEl0IGZsYWdzIGFuIHVuZGVybHlpbmcgSUNELTEwIGNhdXNlIGJlZ2lubmluZyB3aXRoICJDIiBhcyBhIHBvdGVudGlhbAogIGNhbmNlci1jb2RlZCBkZWF0aCBmb3IgZnVydGhlciByZWdpc3RyeSByZXZpZXcuCiovCgpsaWJyYXJ5IEZISVJCcmlkZ2VNT0ZvbGxvd0JhY2sgdmVyc2lvbiAnMC4xLjAnCgp1c2luZyBGSElSIHZlcnNpb24gJzQuMC4xJwoKaW5jbHVkZSBGSElSSGVscGVycyB2ZXJzaW9uICc0LjAuMScgY2FsbGVkIEZISVJIZWxwZXJzCgpjb2Rlc3lzdGVtIExPSU5DOiAnaHR0cDovL2xvaW5jLm9yZycKCmNvZGUgIkF1dG9tYXRlZCBVbmRlcmx5aW5nIENhdXNlIG9mIERlYXRoIjoKICAnODAzNTgtNScgZnJvbSBMT0lOQwogIGRpc3BsYXkgJ0NhdXNlIG9mIGRlYXRoLnVuZGVybHlpbmcgW0F1dG9tYXRlZF0nCgpjb250ZXh0IFBhdGllbnQKCmRlZmluZSAiVW5kZXJseWluZyBDYXVzZSBPYnNlcnZhdGlvbnMiOgogIFtPYnNlcnZhdGlvbjogIkF1dG9tYXRlZCBVbmRlcmx5aW5nIENhdXNlIG9mIERlYXRoIl0gTwogICAgd2hlcmUgTy5zdGF0dXMgPSAnZmluYWwnCgpkZWZpbmUgIlBvdGVudGlhbCBDYW5jZXItQ29kZWQgRGVhdGgiOgogIGV4aXN0cyAoCiAgICAiVW5kZXJseWluZyBDYXVzZSBPYnNlcnZhdGlvbnMiIE8KICAgICAgbGV0IENhdXNlQ29uY2VwdDogTy52YWx1ZSBhcyBGSElSLkNvZGVhYmxlQ29uY2VwdAogICAgICB3aGVyZSBleGlzdHMgKAogICAgICAgIENhdXNlQ29uY2VwdC5jb2RpbmcgQwogICAgICAgICAgd2hlcmUgQy5zeXN0ZW0udmFsdWUgPSAnaHR0cDovL2hsNy5vcmcvZmhpci9zaWQvaWNkLTEwJwogICAgICAgICAgICBhbmQgQy5jb2RlLnZhbHVlIGlzIG5vdCBudWxsCiAgICAgICAgICAgIGFuZCBTdGFydHNXaXRoKEMuY29kZS52YWx1ZSwgJ0MnKQogICAgICApCiAgKQoKZGVmaW5lICJQb3RlbnRpYWwgRGVhdGgtQ2xlYXJhbmNlIEZvbGxvdy1CYWNrIENhbmRpZGF0ZSI6CiAgIlBvdGVudGlhbCBDYW5jZXItQ29kZWQgRGVhdGgiCg=="
+    }
+  ]
+}

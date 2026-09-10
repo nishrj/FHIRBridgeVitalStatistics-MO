@@ -1,0 +1,87 @@
+MCR FHIR vs CDC CORE sample - comparison and revised test file
+=================================================================
+
+Purpose
+-------
+The revised JSON was built by using DeathReportsFHIRBundleWithICD(1).json as the
+structural template and substituting Missouri synthetic values from the uploaded
+245-character MCR_DEATH_2024_SYNTHETIC(1).txt.
+
+This is intended as a parser/import troubleshooting file. It is NOT a claim of
+VRDR conformance or production readiness.
+
+Important source mismatch found
+-------------------------------
+The uploaded original MCR JSON is not based on the same synthetic records as the
+uploaded TXT.
+
+Uploaded TXT records:
+1. SYN951 | TestAdam Example | F | DOB 060636 | DOD 03192024 |
+   Synthetic Facility 830 | AR | I219
+2. SYN608 | TestDana Synthetic | F | DOB 011268 | DOD 06122023 |
+   Synthetic Facility 277 | IL | I251
+
+The older MCR JSON contains different synthetic names/certificates and its
+mapping notes state that it was built from a DBF source. The revised file uses
+the uploaded TXT records because that is the source supplied with this request.
+
+Major structural differences found
+----------------------------------
+Original MCR document resources: 7
+CDC known-good document resources: 24
+
+Original MCR resource counts:
+{'Composition': 1, 'Patient': 1, 'Practitioner': 1, 'Procedure': 1, 'Observation': 2, 'Location': 1}
+
+CDC sample resource counts:
+{'Composition': 1, 'Patient': 1, 'Practitioner': 1, 'Procedure': 1, 'Observation': 15, 'RelatedPerson': 2, 'Location': 2, 'Organization': 1}
+
+Original MCR Composition section counts:
+{'DecedentDemographics': 1, 'DeathCertification': 2, 'DeathInvestigation': 2, 'CodedContent': 1}
+
+CDC sample Composition section counts:
+{'DecedentDemographics': 9, 'DeathCertification': 4, 'DeathInvestigation': 6, 'DecedentDisposition': 3, 'CodedContent': 1}
+
+Other notable differences:
+- Original MCR Parameters omitted state_auxiliary_id.
+- Original MCR document identifier omitted AuxiliaryStateIdentifier1.
+- Original MCR lacked the DecedentDisposition section.
+- Original MCR contained only 7 resources per death-certificate document versus
+  24 in the CDC sample.
+- Original MCR Death Date Observation lacked the sample's location-of-death
+  component.
+- Original MCR Patient, Death Location, and Certifier resources were much
+  smaller than those in the CDC sample.
+- The exact cause of the CORE parsing failure cannot be proven from file
+  comparison alone, but these are significant differences from the file that
+  CORE successfully imported.
+
+What the revised file changes
+-----------------------------
+- Preserves the same JSON key structure, array lengths, resource order, section
+  structure, and profile set as the CDC sample.
+- Uses two new UUID graphs with no unresolved internal urn:uuid references.
+- Uses jurisdiction_id = MO.
+- Uses the uploaded Missouri synthetic names, DOBs, death dates, facilities,
+  death-location city/state, and ICD-10 underlying-cause codes.
+- Converts SYN951 and SYN608 to unsigned certificate numbers 951 and 608,
+  with six-character certificate strings 000951 and 000608.
+- Adds synthetic state_auxiliary_id values because that field is present in the
+  known-good CDC sample but absent from the reduced Missouri TXT.
+- Retains structurally required/sample-only fields as explicitly synthetic
+  scaffold values rather than removing those resources.
+
+Automated structural checks
+---------------------------
+Same JSON structural shape as CDC sample: True
+Unresolved internal references, record 1: 0
+Unresolved internal references, record 2: 0
+
+Recommended test
+----------------
+1. Use the CORE TEST instance first.
+2. Import this revised JSON.
+3. Record whether CORE reports both records imported or parsing failures.
+4. If parsing still fails, capture the CORE log immediately after import.
+5. Do not interpret successful parsing as VRDR profile validation; parser
+   acceptance and standards conformance are separate questions.

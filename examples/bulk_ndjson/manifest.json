@@ -1,0 +1,13 @@
+{
+  "note": "Sample Bulk Data-aligned NDJSON generated from fully synthetic FHIRBridge-MO data. This is not a full $export server implementation.",
+  "files": {
+    "Composition": 2,
+    "Location": 2,
+    "MessageHeader": 2,
+    "Observation": 4,
+    "Parameters": 2,
+    "Patient": 2,
+    "Practitioner": 2,
+    "Procedure": 2
+  }
+}
