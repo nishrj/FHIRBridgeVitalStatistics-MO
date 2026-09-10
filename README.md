@@ -6,7 +6,7 @@ FHIRBridge-MO is a proof-of-concept public-health informatics project that explo
 
 The current repository contains a **synthetic-data MVP** only. It is intended for development, learning, interoperability testing, and research—not production clinical or registry use.
 
-> **Status:** Developer-reference prototype. Synthetic data only. VRDR conformance and successful CORE import of the FHIRBridge-MO-generated bundle are still being evaluated.
+> **Status:** Developer-reference prototype. Synthetic data only. Successful CORE import of the FHIRBridge-MO-generated bundle are being evaluated.
 
 ## Why this project exists
 
@@ -62,8 +62,6 @@ See [`mapping/SyntheticDCOtoFHIRmapping.csv`](mapping/SyntheticDCOtoFHIRmapping.
 - FHIR JSON Bundles
 - CQL prototype packaged as a FHIR `Library`
 - Bulk Data-aligned NDJSON prototype
-
-SMART on FHIR and CDS Hooks are not required by the current batch-oriented public-health workflow.
 
 ## Repository layout
 
