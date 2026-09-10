@@ -228,6 +228,6 @@ FHIRBridge-MO is informed by:
 Citation metadata are provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
-This MVP prototype was created for the AMIA FHIR app competition 2026. Please contact the project team at before reusing or redistributing the software. 
+This MVP prototype was created for the AMIA FHIR app competition 2026. Please contact the project team before reusing or redistributing the software. 
 https://cancerregistry.missouri.edu/
 
