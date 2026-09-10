@@ -145,7 +145,7 @@ This file was prepared to closely follow the structure of a known CDC Registry P
 
 ## CORE testing status
 
-A CDC-supplied reference FHIR bundle was successfully imported into the CORE **Death Reports preprocessing** area with two records and no parsing failures. That establishes a baseline for the CORE import pathway.
+A reference FHIR bundle was successfully imported into the CORE **Death Reports preprocessing** area with two records and no parsing failures. That establishes a baseline for the CORE import pathway.
 
 The Missouri-generated/template-aligned example remains a test artifact until its own import behavior and VRDR validation are documented.
 
@@ -214,7 +214,6 @@ See [`docs/roadmap.md`](docs/roadmap.md).
 - **Mohammad Beheshti** — technical consultation, architecture, feasibility, transformation methodology
 - **Iris Zachary, PhD** — scientific and cancer-registry oversight
 
-Update this section before publication if the final authorship/contribution statement changes.
 
 ## Acknowledgements
 
@@ -224,7 +223,7 @@ FHIRBridge-MO is informed by:
 - HL7 Vital Records Death Reporting (VRDR)
 - CDC Registry Plus CORE Death Reports functionality and reference materials
 
-No endorsement by HL7, CDC, AMIA, or any other organization is implied.
+
 
 ## Citation
 
