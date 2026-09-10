@@ -213,7 +213,7 @@ See [`docs/roadmap.md`](docs/roadmap.md).
 ## Project team
 
 - **Nishant Jain, PhD, MS, MHA, FAMIA** — project concept, cancer-registry use case, source-to-FHIR mapping, initial prototype, and Registry Plus CORE coordination
-- **Anirudh Kambhampati, MS** — student development, implementation/refinement, testing, validation, and documentation
+- **Anirudh Kambhampati, MS** — student development, implementation/refinement, initial prototype,testing, validation, and documentation
 - **Mohammad Beheshti, MSHI** — technical consultation, architecture, feasibility, and transformation methodology
 - **Iris Zachary, PhD, MS, FAMIA, ODS-C** — scientific and cancer-registry oversight
 
