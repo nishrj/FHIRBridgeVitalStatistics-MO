@@ -8,4 +8,3 @@ construction where practical, clearly distinguish source-derived values from
 synthetic scaffolding, and update mapping/testing documentation when behavior
 changes.
 
-Do not describe CORE parser acceptance as proof of complete VRDR conformance.
