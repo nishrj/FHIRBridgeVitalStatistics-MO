@@ -229,6 +229,6 @@ Citation metadata are provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
-Copyright and licensing status are under review in accordance with applicable University of Missouri intellectual-property requirements. **No open-source license has been granted at this time.**
+This MVP prototype was created for the AMIA FHIR App Competition 2026. Please contact the project team before reusing or redistributing.
 
 See [`LICENSE_STATUS.md`](LICENSE_STATUS.md) before reusing or redistributing the software.
